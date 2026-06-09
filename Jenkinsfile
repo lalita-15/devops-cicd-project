@@ -30,7 +30,7 @@ pipeline {
                 )]) {
 
                     bat '''
-                    echo  Username=%DOCKERHUB_USERNAME%
+                    docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%
                     '''
                 }
             }

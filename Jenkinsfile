@@ -3,15 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/lalita-15/devops-cicd-project.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t devops-project:v1 .'
+                bat 'docker build -t devops-cicd-project:v1 .'
             }
         }
 

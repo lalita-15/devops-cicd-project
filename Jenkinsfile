@@ -47,16 +47,16 @@ pipeline {
     }
 
     post {
-        always {
-            bat "docker rmi %IMAGE_NAME%:%IMAGE_TAG% || true"
-            bat "docker rmi %IMAGE_NAME%:latest || true"
-            bat 'docker image prune -f || true'
-        }
-        success {
-            echo "Build ${env.BUILD_NUMBER} pushed successfully!"
-        }
-        failure {
-            echo "Build ${env.BUILD_NUMBER} failed."
-        }
+    always {
+        bat "docker rmi %IMAGE_NAME%:%IMAGE_TAG% 2>nul & exit /b 0"
+        bat "docker rmi %IMAGE_NAME%:latest 2>nul & exit /b 0"
+        bat "docker image prune -f 2>nul & exit /b 0"
     }
+    success {
+        echo "Build ${env.BUILD_NUMBER} pushed successfully!"
+    }
+    failure {
+        echo "Build ${env.BUILD_NUMBER} failed."
+    }
+}
 }

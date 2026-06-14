@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-cicd-project
+
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-cicd-project
+  template:
+    metadata:
+      labels:
+        app: devops-cicd-project
+    spec:
+      containers:
+      - name: devops-cicd-project
+        image: lalita15/devops-cicd-project:latest
+        ports:
+        - containerPort: 80
